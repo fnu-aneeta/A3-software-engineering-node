@@ -36,11 +36,7 @@ console.log(process.env.DB_USERNAME);
 const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
 mongoose.connect(connectionString);
 
-// connect to the database
-//mongoose.connect("mongodb+srv://aneeta:halogen@cluster0.wwlvx.mongodb.net/Tuiter?retryWrites=true&w=majority");
-
 const app = express();
-// app.use(express.json());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     res.header("Access-Control-Allow-Headers",
