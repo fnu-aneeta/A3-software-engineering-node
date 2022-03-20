@@ -86,9 +86,14 @@ export default class TuitController implements TuitControllerI {
      * body formatted as JSON containing the new tuit that was inserted in the
      * database
      */
-    createTuitByUser = (req: Request, res: Response) =>
-        TuitController.tuitDao.createTuitByUser(req.params.uid, req.body)
+    createTuitByUser = (req: Request, res: Response) => {
+        console.log("Printing Body")
+        console.log(req.body)
+        console.log("Printing Params")
+        console.log(req.params.uid)
+        return TuitController.tuitDao.createTuitByUser(req.params.uid, req.body)
             .then((tuit: Tuit) => res.json(tuit));
+    }
 
 
     /**
@@ -108,6 +113,6 @@ export default class TuitController implements TuitControllerI {
      * on whether deleting a user was successful or not
      */
     deleteTuit = (req: Request, res: Response) =>
-        TuitController.tuitDao.deleteTuit(req.params.uid)
+        TuitController.tuitDao.deleteTuit(req.params.tid)
             .then((status) => res.send(status));
 };

@@ -55,6 +55,8 @@ export default class UserController implements UserControllerI {
                 UserController.userController.deleteUser);
             app.delete("/api/users",
                 UserController.userController.deleteAllUsers);
+            app.delete("/api/users/username/:username/delete",
+                UserController.userController.deleteUserByUsername);
         }
         return UserController.userController;
     }
@@ -92,9 +94,12 @@ export default class UserController implements UserControllerI {
      * body formatted as JSON containing the new user that was inserted in the
      * database
      */
-    createUser = (req: Request, res: Response) =>
+    createUser = (req: Request, res: Response) => {
+        console.log(req.body)
         UserController.userDao.createUser(req.body)
             .then((user: User) => res.json(user));
+    }
+
 
     /**
      * Modifies an existing user instance
@@ -116,6 +121,10 @@ export default class UserController implements UserControllerI {
      */
     deleteUser = (req: Request, res: Response) =>
         UserController.userDao.deleteUser(req.params.uid)
+            .then((status) => res.send(status));
+
+    deleteUserByUsername = (req:Request,res:Response) =>
+        UserController.userDao.deleteUserByUsername(req.params.username)
             .then((status) => res.send(status));
 
     /**
