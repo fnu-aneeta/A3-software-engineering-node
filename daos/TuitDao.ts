@@ -83,6 +83,6 @@ export default class TuitDao implements TuitDaoI{
      * @param {string} uid Primary key of user to be removed
      * @returns Promise To be notified when tuit is removed from the database
      */
-    deleteTuit = async (uid: string): Promise<any> =>
-        TuitModel.deleteOne({_id: uid});
+    deleteTuit = async (tid: string): Promise<any> =>
+        TuitModel.deleteOne({_id: tid});
 }
